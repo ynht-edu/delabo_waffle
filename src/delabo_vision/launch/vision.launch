@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="delabo_vision_node" pkg="delabo_vision" type="vision_node" output="screen">
+        <param name="show_vision" value="true"/>
+    </node>
+</launch>

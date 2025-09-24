@@ -7,7 +7,49 @@ project(delabo_vision)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  cv_bridge
+  geometry_msgs
+  image_transport
+  roscpp
+  sensor_msgs
+  std_srvs
+)
+
+find_package(OpenCV REQUIRED)
+
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES delabo_vision
+  CATKIN_DEPENDS roscpp sensor_msgs geometry_msgs cv_bridge image_transport std_srvs
+)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+)
+
+add_library(delabo_vision
+  src/target_detector.cpp
+)
+
+add_executable(vision_node src/vision_node.cpp)
+target_link_libraries(vision_node delabo_vision ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
+install(TARGETS delabo_vision vision_node
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -66,7 +108,7 @@ find_package(catkin REQUIRED)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   geometry_msgs#   sensor_msgs
 # )
 
 ################################################
@@ -101,7 +143,7 @@ find_package(catkin REQUIRED)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES delabo_vision
-#  CATKIN_DEPENDS other_catkin_pkg
+#  CATKIN_DEPENDS cv_bridge geometry_msgs image_transport opencv4 roscpp sensor_msgs std_srvs
 #  DEPENDS system_lib
 )
 
@@ -113,7 +155,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-# ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="navigation_target_follower" pkg="delabo_control" type="navigation_target_follower" output="screen">
+        <param name="target_distance" value="0.5"/>
+        <param name="goal_tolerance" value="0.3"/>
+    </node>
+</launch>
