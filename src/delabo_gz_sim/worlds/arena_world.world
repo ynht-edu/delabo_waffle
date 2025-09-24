@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="arena_world">
+    
+    <!-- Physics settings -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    
+    <!-- Lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- Arena -->
+    <include>
+      <uri>model://arena</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    
+    <!-- 3x3 Grid of Obstacles -->
+    <!-- Row 1 -->
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_1_1</name>
+      <pose>-1.5 -1.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_1_2</name>
+      <pose>0 -1.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_1_3</name>
+      <pose>1.5 -1.5 0 0 0 0</pose>
+    </include>
+    
+    <!-- Row 2 -->
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_2_1</name>
+      <pose>-1.5 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_2_2</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_2_3</name>
+      <pose>1.5 0 0 0 0 0</pose>
+    </include>
+    
+    <!-- Row 3 -->
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_3_1</name>
+      <pose>-1.5 1.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_3_2</name>
+      <pose>0 1.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://obstacle</uri>
+      <name>obstacle_3_3</name>
+      <pose>1.5 1.5 0 0 0 0</pose>
+    </include>
+    
+  </world>
+</sdf>
