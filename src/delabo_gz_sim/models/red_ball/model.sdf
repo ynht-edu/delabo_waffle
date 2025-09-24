@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="red_ball">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <sphere>
+            <radius>0.15</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <sphere>
+            <radius>0.15</radius>
+          </sphere>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
