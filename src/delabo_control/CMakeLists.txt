@@ -7,8 +7,38 @@ project(delabo_control)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  roscpp
+  std_msgs
+  move_base_msgs
+  actionlib
+  tf2_ros
+  tf2_geometry_msgs
+  nav_msgs
+)
 
+catkin_package(
+  CATKIN_DEPENDS geometry_msgs roscpp std_msgs move_base_msgs actionlib tf2_ros tf2_geometry_msgs
+)
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_executable(navigation_target_follower src/navigation_target_follower.cpp)
+target_link_libraries(navigation_target_follower ${catkin_LIBRARIES})
+
+add_executable(target_follower_cmdvel src/target_follower_cmdvel.cpp)
+target_link_libraries(target_follower_cmdvel ${catkin_LIBRARIES})
+
+install(TARGETS navigation_target_follower
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -66,7 +96,7 @@ find_package(catkin REQUIRED)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   geometry_msgs#   std_msgs
 # )
 
 ################################################
@@ -101,7 +131,7 @@ find_package(catkin REQUIRED)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES delabo_control
-#  CATKIN_DEPENDS other_catkin_pkg
+#  CATKIN_DEPENDS geometry_msgs roscpp std_msgs
 #  DEPENDS system_lib
 )
 
@@ -113,7 +143,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-# ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library

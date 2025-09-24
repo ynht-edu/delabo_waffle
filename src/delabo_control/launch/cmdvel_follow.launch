@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="target_follower_cmdvel" pkg="delabo_control" type="target_follower_cmdvel" output="screen">
+        <param name="target_distance" value="0.3"/>
+        <param name="goal_tolerance" value="0.1"/>
+        <param name="max_linear_vel" value="0.3"/>
+        <param name="max_angular_vel" value="0.8"/>
+        <param name="linear_kp" value="0.5"/>
+        <param name="angular_kp" value="1.2"/>
+        <param name="safety_distance" value="0.4"/>
+    </node>
+</launch>

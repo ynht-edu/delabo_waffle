@@ -1,0 +1,9 @@
+<launch>
+    <include file="$(find delabo_gz_sim)/launch/turtlebot3_target_world.launch" />
+    <arg name="map_file" default="$(find delabo_gz_sim)/map/map.yaml" />
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+        <arg name="map_file" value="$(arg map_file)" />
+    </include>
+    <include file="$(find delabo_vision)/launch/vision.launch" />
+    <include file="$(find delabo_control)/launch/cmdvel_follow.launch" />
+</launch>
